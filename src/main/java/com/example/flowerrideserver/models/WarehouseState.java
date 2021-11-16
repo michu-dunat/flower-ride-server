@@ -20,7 +20,7 @@ public class WarehouseState {
     private int pricePerPiece;
     private int amount;
     private boolean isFlower;
-    @OneToOne(mappedBy="warehouseState")
+    @OneToOne(mappedBy = "warehouseState")
     private Product product;
 
     public WarehouseState(String name, int pricePerPiece, int amount, boolean isFlower) {
