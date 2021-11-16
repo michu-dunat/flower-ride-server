@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.util.List;
 
 @Entity
@@ -32,4 +33,11 @@ public class DeliveryOrder {
     @ManyToOne
     private Receiver receiver;
 
+    public DeliveryOrder(float price, Date deliveryDate, Status status, Sender sender, Receiver receiver) {
+        this.price = price;
+        this.deliveryDate = deliveryDate;
+        this.status = status;
+        this.sender = sender;
+        this.receiver = receiver;
+    }
 }
