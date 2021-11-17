@@ -3,6 +3,7 @@ package com.example.flowerrideserver.models;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -10,6 +11,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString
 public class WarehouseState {
 
     @Id
@@ -19,7 +21,7 @@ public class WarehouseState {
     private String name;
     private int pricePerPiece;
     private int amount;
-    private boolean isFlower;
+    private Boolean isFlower;
     @OneToOne(mappedBy = "warehouseState")
     private Product product;
 
