@@ -35,4 +35,10 @@ public class AddWarehouseStateController {
         return new ResponseEntity<>(200, HttpStatus.OK);
     }
 
+    @PutMapping("/update-warehouse-state")
+    public ResponseEntity<Integer> updateWarehouseState(@RequestBody WarehouseState warehouseState) {
+        warehouseStateRepository.save(warehouseState);
+        return new ResponseEntity<>(200, HttpStatus.OK);
+    }
+
 }
