@@ -19,7 +19,6 @@ public class AddWarehouseStateController {
 
     @PostMapping("/add-warehouse-state")
     public ResponseEntity<Integer> addWarehouseState(@RequestBody WarehouseState warehouseState) {
-        System.out.println(warehouseState);
         warehouseStateRepository.save(warehouseState);
         return new ResponseEntity<>(200, HttpStatus.OK);
     }
@@ -28,6 +27,12 @@ public class AddWarehouseStateController {
     @ResponseBody
     public List<WarehouseState> getAllWarehouseStates() {
         return warehouseStateRepository.findAll();
+    }
+
+    @DeleteMapping("/delete-warehouse-state/{id}")
+    public ResponseEntity<Integer> deleteWarehouseState(@PathVariable(value = "id") int id) {
+        warehouseStateRepository.deleteById(id);
+        return new ResponseEntity<>(200, HttpStatus.OK);
     }
 
 }
