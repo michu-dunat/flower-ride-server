@@ -42,7 +42,11 @@ public class UserController {
 
     @PutMapping("/update-user")
     public ResponseEntity<Integer> updateUser(@RequestBody User user) {
-        userRepository.save(user);
+        try {
+            userRepository.save(user);
+        } catch (Exception e) {
+            return new ResponseEntity<>(406, HttpStatus.NOT_ACCEPTABLE);
+        }
         return new ResponseEntity<>(200, HttpStatus.OK);
     }
 
