@@ -12,7 +12,7 @@ import java.util.List;
 
 @Controller
 @CrossOrigin(origins = "http://localhost:4200")
-public class AddWarehouseStateController {
+public class WarehouseStateController {
 
     @Autowired
     private WarehouseStateRepository warehouseStateRepository;
