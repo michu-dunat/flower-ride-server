@@ -1,6 +1,7 @@
 package com.example.flowerrideserver.controllers;
 
 import com.example.flowerrideserver.models.User;
+import com.example.flowerrideserver.models.WarehouseState;
 import com.example.flowerrideserver.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,6 +37,12 @@ public class UserController {
     @DeleteMapping("/delete-user/{id}")
     public ResponseEntity<Integer> deleteUser(@PathVariable(value = "id") int id) {
         userRepository.deleteById(id);
+        return new ResponseEntity<>(200, HttpStatus.OK);
+    }
+
+    @PutMapping("/update-user")
+    public ResponseEntity<Integer> updateUser(@RequestBody User user) {
+        userRepository.save(user);
         return new ResponseEntity<>(200, HttpStatus.OK);
     }
 
