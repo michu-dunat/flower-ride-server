@@ -9,7 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @CrossOrigin(origins = "http://localhost:4200")
@@ -50,4 +52,19 @@ public class UserController {
         return new ResponseEntity<>(200, HttpStatus.OK);
     }
 
+    @PostMapping("/login")
+    @ResponseBody
+    public Map<String, String> login(@RequestBody User credentials) {
+        Map<String, String> response = new HashMap<>();
+        User user = userRepository.findByLogin(credentials.getLogin());
+        if (user != null) {
+            if (user.getPassword().equals(credentials.getPassword())) {
+                response.put("loggedIn", "true");
+                response.put("role", user.getRole());
+            } else {
+                response.put("loggedIn", "false");
+            }
+        }
+        return response;
+    }
 }
