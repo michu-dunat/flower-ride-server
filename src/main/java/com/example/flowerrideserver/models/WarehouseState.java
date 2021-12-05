@@ -1,17 +1,17 @@
 package com.example.flowerrideserver.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
 public class WarehouseState {
 
     @Id
@@ -22,8 +22,9 @@ public class WarehouseState {
     private int pricePerPiece;
     private int amount;
     private Boolean isFlower;
-    @OneToOne(mappedBy = "warehouseState")
-    private Product product;
+    @OneToMany(mappedBy = "warehouseState")
+    @JsonIgnore
+    private Set<Product> products;
 
     public WarehouseState(String name, int pricePerPiece, int amount, boolean isFlower) {
         this.name = name;

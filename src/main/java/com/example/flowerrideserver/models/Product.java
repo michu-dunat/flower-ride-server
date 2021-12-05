@@ -18,7 +18,7 @@ public class Product {
     private int id;
 
     private int howMany;
-    @OneToOne
+    @ManyToOne
     private WarehouseState warehouseState;
 
     @ManyToMany(mappedBy = "products")

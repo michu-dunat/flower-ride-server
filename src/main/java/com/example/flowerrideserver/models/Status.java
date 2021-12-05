@@ -22,6 +22,11 @@ public class Status {
     @OneToMany(mappedBy="status")
     private List<DeliveryOrder> deliveryOrder;
 
+    public Status(int id, String type) {
+        this.id = id;
+        this.type = type;
+    }
+
     public Status(String type) {
         this.type = type;
     }
