@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @Controller
 @CrossOrigin(origins = "http://localhost:4200")
@@ -44,6 +45,9 @@ public class UserController {
 
     @PutMapping("/update-user")
     public ResponseEntity<Integer> updateUser(@RequestBody User user) {
+        if (Objects.equals(user.getPassword(), "")) {
+            user.setPassword(userRepository.findById(user.getId()).get().getPassword());
+        }
         try {
             userRepository.save(user);
         } catch (Exception e) {
