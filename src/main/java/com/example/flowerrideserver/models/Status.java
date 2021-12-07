@@ -1,5 +1,6 @@
 package com.example.flowerrideserver.models;
 
+import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,7 +17,7 @@ public class Status {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
+    @NotNull
     private String type;
 
     @OneToMany(mappedBy="status")

@@ -1,6 +1,7 @@
 package com.example.flowerrideserver.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.sun.istack.NotNull;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,11 +23,15 @@ public class Sender {
     private int id;
 
     @EqualsAndHashCode.Include
+    @NotNull
     private String name;
+    @NotNull
     @EqualsAndHashCode.Include
     private String lastName;
+    @NotNull
     @EqualsAndHashCode.Include
     private String phoneNumber;
+    @NotNull
     @EqualsAndHashCode.Include
     private String email;
 

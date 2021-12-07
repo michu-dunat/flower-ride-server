@@ -1,5 +1,6 @@
 package com.example.flowerrideserver.models;
 
+import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,13 +17,17 @@ public class Receiver {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
+    @NotNull
     private String name;
+    @NotNull
     private String lastName;
     private String street;
+    @NotNull
     private String buildingNumber;
     private String apartmentNumber;
+    @NotNull
     private String city;
+    @NotNull
     private String postcode;
 
     @OneToMany(mappedBy="receiver")

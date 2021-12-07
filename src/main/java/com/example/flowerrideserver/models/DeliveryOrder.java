@@ -1,5 +1,6 @@
 package com.example.flowerrideserver.models;
 
+import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -24,7 +25,9 @@ public class DeliveryOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @NotNull
     private float price;
+    @NotNull
     private java.sql.Date deliveryDate;
     @ManyToOne
     private Status status;

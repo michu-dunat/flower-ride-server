@@ -1,5 +1,6 @@
 package com.example.flowerrideserver.models;
 
+import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,10 +19,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(unique = true, nullable = false)
+    @Column(unique = true)
+    @NotNull
     private String login;
-    @Column(nullable = false)
+    @NotNull
     private String password;
+    @NotNull
     private String role;
 
     public User(String login, String password, String role) {
