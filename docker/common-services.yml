@@ -1,30 +1,30 @@
 version: "2"
 services:
     common_master_1:
-        image: mysql:8.0
+        image: mysql:5.7.27
         container_name: ${MASTER_1_HOSTNAME}
         hostname: ${MASTER_1_HOSTNAME}
         volumes:
             - ../conf/master1.cnf:/etc/mysql/conf.d/my.cnf:ro
-            - ../src/main/resources/schema.sql:/docker-entrypoint-initdb.d/1-schema.sql
             - ./usr/share/zoneinfo/:/usr/share/zoneinfo/:ro
         environment:
             MYSQL_ROOT_PASSWORD: ${MASTER_1_ROOT_PASSWORD}
+            MYSQL_DATABASE: 'flower-ride-database'
         networks:
             replication_network:
                 ipv4_address: ${MASTER_1_HOST_IP}
         ports:
             - 15000:3306
     common_slave_1:
-        image: mysql:8.0
+        image: mysql:5.7.27
         container_name: ${SLAVE_1_HOSTNAME}
         hostname: ${SLAVE_1_HOSTNAME}
         volumes:
             - ../conf/slave1.cnf:/etc/mysql/conf.d/my.cnf:ro
-            - ../src/main/resources/schema.sql:/docker-entrypoint-initdb.d/1-schema.sql
             - ./usr/share/zoneinfo/:/usr/share/zoneinfo/:ro
         environment:
             MYSQL_ROOT_PASSWORD: ${SLAVE_1_ROOT_PASSWORD}
+            MYSQL_DATABASE: 'flower-ride-database'
         networks:
             replication_network:
                 ipv4_address: ${SLAVE_1_HOST_IP}
@@ -46,7 +46,7 @@ services:
     replication:
         image: ubuntu:18.04
         volumes:
-            - ../scripts/${REPL_SCRIPT_MOUNT_PATH}
+            - ../scripts:${REPL_SCRIPT_MOUNT_PATH}
         networks:
             - replication_network
         environment:
