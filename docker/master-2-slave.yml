@@ -18,14 +18,6 @@ services:
             - master_1
             - slave_1
         command: bash ${REPL_SCRIPT_MOUNT_PATH}/master-2-slave.sh
-    pma:
-        extends:
-            file: common-services.yml
-            service: pma
-        depends_on:
-            - master_1
-            - slave_1
-            - replication
 networks:
     replication_network:
         ipam:
