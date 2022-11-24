@@ -1,0 +1,7 @@
+#! /bin/bash
+
+set -x
+
+chmod 0444 master1.cnf
+chmod 0444 slave1.cnf
+chmod 0444 slave2.cnf
