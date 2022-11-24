@@ -10,6 +10,12 @@ services:
             service: common_slave_1
         depends_on:
             - master_1
+    slave_2:
+        extends:
+            file: common-services.yml
+            service: common_slave_2
+        depends_on:
+            - master_1
     replication:
         extends:
             file: common-services.yml
@@ -17,6 +23,7 @@ services:
         depends_on:
             - master_1
             - slave_1
+            - slave_2
         command: bash ${REPL_SCRIPT_MOUNT_PATH}/master-2-slave.sh
 networks:
     replication_network:

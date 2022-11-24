@@ -30,19 +30,21 @@ services:
                 ipv4_address: ${SLAVE_1_HOST_IP}
         ports:
             - ${SLAVE_1_EXPOSED_PORT}:3306
-#    common_slave_2:
-#        image: mysql:8.0
-#        container_name: ${SLAVE_2_HOSTNAME}
-#        hostname: ${SLAVE_2_HOSTNAME}
-#        volumes:
-#            - ../conf/slave2.cnf:/etc/mysql/conf.d/my.cnf:ro
-#            - ../data/slave2:/var/lib/mysql:rw
-#            - /usr/share/zoneinfo/:/usr/share/zoneinfo/:ro
-#        environment:
-#            MYSQL_ROOT_PASSWORD: ${SLAVE_2_ROOT_PASSWORD}
-#        networks:
-#            replication_network:
-#                ipv4_address: ${SLAVE_2_HOST_IP}
+    common_slave_2:
+        image: mysql:5.7.27
+        container_name: ${SLAVE_2_HOSTNAME}
+        hostname: ${SLAVE_2_HOSTNAME}
+        volumes:
+            - ../conf/slave2.cnf:/etc/mysql/conf.d/my.cnf:ro
+            - /usr/share/zoneinfo/:/usr/share/zoneinfo/:ro
+        environment:
+            MYSQL_ROOT_PASSWORD: ${SLAVE_2_ROOT_PASSWORD}
+            MYSQL_DATABASE: ${DATABASE_NAME}
+        networks:
+            replication_network:
+                ipv4_address: ${SLAVE_2_HOST_IP}
+        ports:
+            - ${SLAVE_2_EXPOSED_PORT}:3306
     replication:
         image: ubuntu:18.04
         volumes:
@@ -60,10 +62,10 @@ services:
             SLAVE_1_ROOT_USER: ${SLAVE_1_ROOT_USER}
             SLAVE_1_ROOT_PASSWORD: ${SLAVE_1_ROOT_PASSWORD}
 
-            # SLAVE_2_HOSTNAME: ${SLAVE_2_HOSTNAME}
-            # SLAVE_2_HOST_IP: ${SLAVE_2_HOST_IP}
-            # SLAVE_2_ROOT_USER: ${SLAVE_2_ROOT_USER}
-            # SLAVE_2_ROOT_PASSWORD: ${SLAVE_2_ROOT_PASSWORD}
+            SLAVE_2_HOSTNAME: ${SLAVE_2_HOSTNAME}
+            SLAVE_2_HOST_IP: ${SLAVE_2_HOST_IP}
+            SLAVE_2_ROOT_USER: ${SLAVE_2_ROOT_USER}
+            SLAVE_2_ROOT_PASSWORD: ${SLAVE_2_ROOT_PASSWORD}
 
             REPL_USER: ${REPL_USER}
             REPL_PASSWORD: ${REPL_PASSWORD}

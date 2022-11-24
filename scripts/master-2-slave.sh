@@ -20,3 +20,4 @@ source $BASEDIR/common-functions.sh
 # Setup replication from master1 to slave1
 #######################################################################################################################
 setup_master_2_slave_replication $MASTER_1_HOST_IP $MASTER_1_ROOT_USER $MASTER_1_ROOT_PASSWORD $SLAVE_1_HOST_IP $SLAVE_1_ROOT_USER $SLAVE_1_ROOT_PASSWORD $REPL_USER $REPL_PASSWORD
+setup_master_2_slave_replication $MASTER_1_HOST_IP $MASTER_1_ROOT_USER $MASTER_1_ROOT_PASSWORD $SLAVE_2_HOST_IP $SLAVE_2_ROOT_USER $SLAVE_2_ROOT_PASSWORD $REPL_USER $REPL_PASSWORD
