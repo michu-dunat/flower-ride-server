@@ -4,3 +4,4 @@ set -x
 
 export $(grep -v '^#' .env | xargs)
 docker-compose -f ./docker/master-2-slave.yml down
+docker volume prune -f
