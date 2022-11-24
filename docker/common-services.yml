@@ -9,12 +9,12 @@ services:
             - ./usr/share/zoneinfo/:/usr/share/zoneinfo/:ro
         environment:
             MYSQL_ROOT_PASSWORD: ${MASTER_1_ROOT_PASSWORD}
-            MYSQL_DATABASE: 'flower-ride-database'
+            MYSQL_DATABASE: ${DATABASE_NAME}
         networks:
             replication_network:
                 ipv4_address: ${MASTER_1_HOST_IP}
         ports:
-            - 15000:3306
+            - ${MASTER_1_EXPOSED_PORT}:3306
     common_slave_1:
         image: mysql:5.7.27
         container_name: ${SLAVE_1_HOSTNAME}
@@ -24,12 +24,12 @@ services:
             - ./usr/share/zoneinfo/:/usr/share/zoneinfo/:ro
         environment:
             MYSQL_ROOT_PASSWORD: ${SLAVE_1_ROOT_PASSWORD}
-            MYSQL_DATABASE: 'flower-ride-database'
+            MYSQL_DATABASE: ${DATABASE_NAME}
         networks:
             replication_network:
                 ipv4_address: ${SLAVE_1_HOST_IP}
         ports:
-            - 16000:3306
+            - ${SLAVE_1_EXPOSED_PORT}:3306
 #    common_slave_2:
 #        image: mysql:8.0
 #        container_name: ${SLAVE_2_HOSTNAME}

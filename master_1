@@ -1,0 +1,6 @@
+#! /bin/bash
+
+set -x
+
+export $(grep -v '^#' .env | xargs)
+docker container exec -it master_1 mysql -u ${MASTER_1_ROOT_USER} --password=${MASTER_1_ROOT_PASSWORD} ${DATABASE_NAME}

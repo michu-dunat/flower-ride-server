@@ -1,0 +1,6 @@
+#! /bin/bash
+
+set -x
+
+export $(grep -v '^#' .env | xargs)
+docker container exec -it slave_1 mysql -u ${SLAVE_1_ROOT_USER} --password=${SLAVE_1_ROOT_PASSWORD} ${DATABASE_NAME}
